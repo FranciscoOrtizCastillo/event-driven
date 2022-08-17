@@ -1,7 +1,9 @@
 #!/bin/bash
 readonly payload="$(dirname "$0")/payload.json"
-readonly time=$(date --rfc-3339=seconds | tr ' ' 'T')
-readonly id=$(tr -dc 'a-f0-9' < /dev/urandom | head -c40)
+#readonly time=$(date --rfc-3339=seconds | tr ' ' 'T')
+readonly time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+#readonly id=$(tr -dc 'a-f0-9' < /dev/urandom | head -c40)
+readonly id="$(LC_ALL=C tr -dc 'a-f0-9' < /dev/urandom | head -c40)"
 
 cat >"$payload" <<EOF
 {
